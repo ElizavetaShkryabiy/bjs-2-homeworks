@@ -1,7 +1,6 @@
 "use strict"
 function solveEquation(a, b, c) {
-  let root = [];  
-  let noRoot = 'Корней нет';
+  let root = [];   
   let d = b**2-4*a*c;
     if (d === 0) {
         let rootForZero = -b/(2*a);
@@ -20,6 +19,18 @@ function solveEquation(a, b, c) {
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
+  if (isNaN(percent)) {
+    return `Параметр "Процентная ставка" содержит неправильное значение "${percent}"`;
+}
+if (isNaN(contribution)) {
+    return `Параметр "Начальный взнос" содержит неправильное значение "${contribution}"`;
+}
+if (isNaN(amount)) {
+    return `Параметр "Общая стоимость" содержит неправильное значение "${amount}"`;
+}
+if (isNaN(date)) {
+    return `Параметр "Дата" содержит неправильное значение "${date}"`;
+}
   let totalAmount;
   let timeInMonths = 0;
   let today = new Date;
@@ -33,11 +44,9 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
   timeInMonths = timeInMonths + monthsFromNow;
   let percentMonthly = percent/100/12; 
   let amountToReturn = amount - contribution;
-  //S * (P + (P / (((1 + P)^n) - 1))), где: S - тело кредита,
-  //P - 1/12 процентной ставки (от 0 до 1), n - количество месяцев ^ - возведение в степень
   let paymentMonthly = amountToReturn * (percentMonthly + (percentMonthly / (((1 + percentMonthly)**timeInMonths)-1)))
   totalAmount = paymentMonthly * timeInMonths;
   console.log(totalAmount.toFixed(2))
 
-  return totalAmount.toFixed(2);
+  return Number(totalAmount.toFixed(2));
 }
