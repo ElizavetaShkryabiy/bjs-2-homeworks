@@ -77,36 +77,53 @@ class Library {
         }
     }
     findBookBy(key, value){
-        this.books. 
-       let result = null;
-       let arr = []; 
-       let type = key;     
-       for (let key of Object.entries(this.books)){
-           if (key === type){
-
-           }
-           for ()
-            
-
-       }
-        in this.books){
-           let typ = this.books.find(type);
-           let val = this.books[typ];
-           result = (typ === key)&&(val === value);
-       }       
-       if (result !== undefined){
-           return result;
-       }else{
-           return null;
-       }
+        let result = undefined;
+        let keyValue = null;
+        for (let book of this.books){           
+            let prop = Object.keys(book);
+            keyValue = prop.find((type) => type === key);
+            for(keyValue in book){
+               if(book[key] === value){
+                result = book;
+               }else{
+                result = null;
+               }
+            }          
+        }
+        
+        return result;  
     }
     giveBookByName(bookName){
-        let result = this.books.findIndex(bookName);
-        if (result !== undefined) {
-            this.books.splice(result,1)
-            return this.books;
+        let result = this.books.find((book) => book.name === bookName);
+        let resultIndex = this.books.findIndex((book) => book.name === bookName);
+        if (result !== undefined) {            
+            this.books.splice(resultIndex,1)
+            return result;
         }else{
             return null;
         }
     }
 }
+
+class Student {
+    constructor(name){
+        this.name = name;        
+    }    
+}
+class Journal extends Student{
+    constructor(name, subject){
+        super(name);
+        this.subject = subject;
+    }
+}
+class Subject extends Journal{
+    constructor(subject){
+        super(subject);
+        this.mark = [];
+    }
+    addMark(mark,subject){
+        this.mark.push(mark);
+    }
+}
+
+
