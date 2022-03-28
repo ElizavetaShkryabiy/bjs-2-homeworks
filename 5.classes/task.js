@@ -105,25 +105,44 @@ class Library {
     }
 }
 
-class Student {
-    constructor(name){
-        this.name = name;        
-    }    
-}
-class Journal extends Student{
-    constructor(name, subject){
-        super(name);
-        this.subject = subject;
-    }
-}
-class Subject extends Journal{
-    constructor(subject){
-        super(subject);
-        this.mark = [];
-    }
-    addMark(mark,subject){
-        this.mark.push(mark);
-    }
-}
+// // Task3
+
+// class Student {
+//     constructor(name){
+//         this.name = name;
+//         this.subject = [];       
+//     }
+//     addMark(mark,subject){
+//         if (this.subject === undefined){
+//             Student[subject] = [];
+//             this.marks = [mark];
+//         }else{        
+//         this.subject = subject;
+//         if(this.marks === undefined){ 
+//             this.marks = [mark];  
+//             } else {
+//               this.marks.push(mark); 
+//             }
+//         }
+        
+//     }
+//     getAverageBySubject (subject){
+//         let sum = 0;
+//         for (let element of this.subject){
+//         sum = sum + element   
+//         }
+//         return sum/this.marks.length;
+//     }
+//     getAverage(){
+
+//     }
+//     exclude(reason){
+//         delete this.subject;
+//         delete this.marks;
+//         this.excluded = reason;
+//     }  
+// }
+
+
 
 
