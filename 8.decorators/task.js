@@ -20,10 +20,29 @@ function cachingDecoratorNew(func) {
   }
 }
 
-function debounceDecoratorNew(func) {
-  // Ваш код
+function debounceDecoratorNew(func, ms) {  
+  let timeout;
+  function wrapper(...rest){    
+    clearTimeout(timeout);
+    func.apply(this, rest);
+    timeout = setTimeout(() => {
+      func.apply(this, rest);      
+    }, ms)
+  }
+  return wrapper;
 }
 
-function debounceDecorator2(func) {
-  // Ваш код
+function debounceDecorator2(func, ms) {
+  let timeout;
+  function wrapper(...rest){          
+    clearTimeout(timeout);  
+    func.apply(this, rest);   
+    timeout = setTimeout(() => {
+      func.apply(this, rest);
+      console.log(`Декоратор вызван ${wrapper.count.length} раз`)      
+    }, ms)
+    wrapper.count.push(rest);    
+  }
+  wrapper.count = [];  
+  return wrapper;
 }
