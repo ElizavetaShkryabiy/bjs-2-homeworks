@@ -34,15 +34,15 @@ class AlarmClock{
         return String((`${hours}:${minutes}`));
     }
     start(){ 
-        let currentDate = this.getCurrentFormattedTime();
+        let currentDate = this.getCurrentFormattedTime;
         if (this.timerId === null){            
-            this.timerId = setInterval(this.alarmCollection.forEach((alarm) => checkClock(alarm), 1000))
+            this.timerId = setInterval(() => {this.alarmCollection.forEach((alarm) => checkClock(alarm))},1000)
         }else{
             return this.timerId;
         }              
            
         function checkClock(alarm){            
-            if(alarm.time == currentDate){
+            if(alarm.time == currentDate()){
                 alarm.callback();
             }
         }
